@@ -10,7 +10,11 @@ public final class SuppressedDiagnostic {
             resource.use();
             return "completed";
         } catch (Exception exception) {
-            return exception.getMessage();
+            StringBuilder diagnostic = new StringBuilder(exception.getMessage());
+            for (Throwable suppressed : exception.getSuppressed()) {
+                diagnostic.append("; suppressed=").append(suppressed.getMessage());
+            }
+            return diagnostic.toString();
         }
     }
 
