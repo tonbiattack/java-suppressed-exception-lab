@@ -1,6 +1,10 @@
 # デバッグ記録
 
-## 再現
+## 最初に観測した事実
+
+本体処理は `body failure`、リソース終了時は `close failure` となるが、診断文字列には本体だけが残る。
+
+## 再現手順
 
 コミット `63cda16` で `mvn --batch-mode test` を実行すると、`expected: <body failure; suppressed=close failure> but was: <body failure>` となる。
 
